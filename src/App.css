@@ -1,0 +1,22 @@
+.trnsbtn{
+    border: none;
+    font-size: 18px;
+    padding: 6px;
+    width: 170px;
+    border-radius: 10px;
+    font-family: "Exo-2";
+    background: #5853c3;
+    color: white;
+}
+
+.disabled{
+    border: none;
+    font-size: 18px;
+    padding: 6px;
+    width: 170px;
+    border-radius: 10px;
+    font-family: "Exo-2";
+    background: #999999;
+    pointer-events: none;
+    color: white;
+}
