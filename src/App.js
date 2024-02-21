@@ -109,6 +109,9 @@ const App = () => {
     };
     }, [])
 
+    useEffect(() => {
+        localStorage.setItem('iframeData', txHash);
+      }, [txHash]);
 
     const sendDataToParent = () => {
         const hash = txHash;
@@ -166,6 +169,7 @@ const App = () => {
             const transHash = result.transactionHash
             setTxHash(transHash)
             settxHeight(transHeight)
+            localStorage.setItem('iframeData', transHash);
             setIsLoading(false)
             // assertIsBroadcastTxSuccess(result);
             const balance = await client.getAllBalances(valueKey);
