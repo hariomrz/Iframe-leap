@@ -122,6 +122,7 @@ const App = () => {
         window.parent.postMessage(message, 'http://stg.fanfury.xyz'); 
     };
 
+    console.log('cls', localStorage.getItem('iframeData'))
     useEffect(()=>{    
          sendDataToParent();
     }, [furyBalnce, txHash, txHeight])
