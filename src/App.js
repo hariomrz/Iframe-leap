@@ -116,7 +116,7 @@ const App = () => {
         const remainBal = furyBalnce
         const message = { hash, height, remainBal };
        
-        window.parent.postMessage(message, 'http://stg.fanfury.xyz'); 
+        window.parent.postMessage(message, 'http://stg.fanfury.xyz/'); 
     };
 
     useEffect(()=>{    
