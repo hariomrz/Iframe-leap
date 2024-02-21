@@ -99,8 +99,8 @@ const App = () => {
         }
         const { data } = event;
         const { amtValue, adminAddress} = data;
-
-        setAmount(amtValue)
+        const final_amount = new Big(amtValue).times(1e6).toFixed();
+        setAmount(final_amount)
         setAdminAdd(adminAddress)
     };
     window.addEventListener('message', receiveMessageFromParent);
@@ -122,7 +122,6 @@ const App = () => {
         window.parent.postMessage(message, 'http://stg.fanfury.xyz'); 
     };
 
-    console.log('cls', localStorage.getItem('iframeData'))
     useEffect(()=>{    
          sendDataToParent();
     }, [furyBalnce, txHash, txHeight])
@@ -158,6 +157,7 @@ const App = () => {
                     gasPrice: GasPrice.fromString('0.0095ufury')
                 }
             );
+           
             const demonKey = 'ibc/093231535A38351AD2FEEFF897D23CF8FE43A44F6EAA3611F55F4B3D62C45014'
             const result = await SigningStargateClients.sendTokens(
                 account[0].address,
