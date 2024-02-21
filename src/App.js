@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { SigningStargateClient, GasPrice, assertIsBroadcastTxSuccess, StargateClient } from '@cosmjs/stargate';
 import { Circles } from "react-loader-spinner";
+import Big from 'big-js';
 import './App.css'
 
 const App = () => {
