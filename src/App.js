@@ -140,7 +140,8 @@ const App = () => {
    
     const onSubmitData = async () => {
         setIsLoading(true)
-        const rpc = 'https://rpc.cosmos.directory/furya';
+        try {
+            const rpc = 'https://rpc.cosmos.directory/furya';
         const offlineSigner = await window.leap.getOfflineSignerAuto('furya-1');
         const client = await StargateClient.connect(rpc);
         const balance = await client.getAllBalances(valueKey);
@@ -166,14 +167,12 @@ const App = () => {
                 [{ denom: demonKey, amount: amount }],
                 'auto'
             );
-            console.log('result', result)
             const transHeight = result.height
             const transHash = result.transactionHash
             setTxHash(transHash)
             settxHeight(transHeight)
             localStorage.setItem('iframeData', transHash);
             setIsLoading(false)
-            // assertIsBroadcastTxSuccess(result);
             const balance = await client.getAllBalances(valueKey);
             const furyBalnce = balance && balance[0]
             getBalance(furyBalnce)
@@ -181,6 +180,11 @@ const App = () => {
         } else {
             alert('Your leap wallet is empty. Cannot process the transaction.');
         }
+
+        } catch (error) {
+           console.log('error', error) 
+        }
+        
     };
 
     
