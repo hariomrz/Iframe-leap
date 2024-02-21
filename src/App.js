@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { SigningStargateClient, GasPrice, assertIsBroadcastTxSuccess, StargateClient } from '@cosmjs/stargate';
-import { TailSpin } from "react-loader-spinner";
+import { Circles } from "react-loader-spinner";
 import './App.css'
 
 const App = () => {
@@ -94,7 +94,7 @@ const App = () => {
     
     useEffect(()=>{
       const receiveMessageFromParent = (event) => {
-        if (event.origin !== 'http://localhost:3000') { 
+        if (event.origin !== 'http://stg.fanfury.xyz') { 
             return;
         }
         const { data } = event;
@@ -110,19 +110,18 @@ const App = () => {
     }, [])
 
 
-    const sendDataToParent =  () => {
+    const sendDataToParent = () => {
         const hash = txHash;
-        const isLoad = isLoading;
         const height = txHeight;
         const remainBal = furyBalnce
-        const message = { hash, height, remainBal, isLoad };
-        window.parent.postMessage(message, 'http://localhost:3000'); 
+        const message = { hash, height, remainBal };
+       
+        window.parent.postMessage(message, 'http://stg.fanfury.xyz'); 
     };
 
     useEffect(()=>{    
          sendDataToParent();
-    }, [furyBalnce, txHash, txHeight, isLoading])
-
+    }, [furyBalnce, txHash, txHeight])
 
     const getBalance =(balnce)=>{
         const usk_token_pattern = /^ibc\/.*5014$/;
@@ -162,12 +161,13 @@ const App = () => {
                 [{ denom: demonKey, amount: amount }],
                 'auto'
             );
+            console.log('result', result)
             const transHeight = result.height
             const transHash = result.transactionHash
             setTxHash(transHash)
             settxHeight(transHeight)
             setIsLoading(false)
-            assertIsBroadcastTxSuccess(result);
+            // assertIsBroadcastTxSuccess(result);
             const balance = await client.getAllBalances(valueKey);
             const furyBalnce = balance && balance[0]
             getBalance(furyBalnce)
@@ -179,11 +179,19 @@ const App = () => {
 
     
   return (
-    <div>
+    <div className='wrp-content'>
         
          <button onClick={()=> onSubmitData()} className={`${amount > 0 ? 'trnsbtn':'disabled'}`}>Transfer</button>
          {
-            isLoading && <TailSpin color="#5853c3" radius={"8px"} />
+           isLoading &&   <Circles
+            height="40"
+            width="40"
+            color="#5853c3"
+            ariaLabel="circles-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+            />
          }
     </div> 
   )
