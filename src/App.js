@@ -202,7 +202,7 @@ const App = () => {
 
            isLoading &&  
            <div className='spinner-wrp'>
-            <span className='txt'>Please wait patiently for the Leap Wallet Extension. It may take up to 10 seconds</span>
+            <span className='txt'>Please wait, It may take up to 10 seconds</span>
            <Circles
             height="40"
             width="40"
