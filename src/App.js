@@ -183,6 +183,7 @@ const App = () => {
 
         } catch (error) {
            console.log('error', error) 
+           alert('Something went wrong please try again')
         }
         
     };
@@ -193,7 +194,11 @@ const App = () => {
         
          <button onClick={()=> onSubmitData()} className={`${amount > 0 ? 'trnsbtn':'disabled'}`}>Transfer</button>
          {
-           isLoading &&   <Circles
+
+        //    isLoading &&  
+           <div>
+            <span>Please wait patiently for the Leap Wallet Extension. It may take up to 10 seconds</span>
+           <Circles
             height="40"
             width="40"
             color="#5853c3"
@@ -202,6 +207,7 @@ const App = () => {
             wrapperClass=""
             visible={true}
             />
+            </div>
          }
     </div> 
   )
