@@ -1,5 +1,5 @@
 
-.wrp-content{
+.wrp-content, .spinner-wrp{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,5 +26,10 @@
     background: #999999;
     pointer-events: none;
     color: white;
+    margin-bottom: 10px;
+}
+
+.txt{
+    font-size: 12px;
     margin-bottom: 10px;
 }
