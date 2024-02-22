@@ -184,7 +184,7 @@ const App = () => {
         }
 
         } catch (error) {
-           console.log('error', error) 
+           console.log('error==========', error) 
            setError(error)
         } finally {
             alert('Something went wrong please try again')
