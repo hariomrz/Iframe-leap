@@ -12,6 +12,7 @@ const App = () => {
     const [txHash, setTxHash] = useState('')
     const [txHeight, settxHeight] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState()
     const initializeFurya = async () => {
         try {
             await window.leap.experimentalSuggestChain({
@@ -117,8 +118,9 @@ const App = () => {
     const sendDataToParent = () => {
         const hash = txHash;
         const height = txHeight;
-        const remainBal = furyBalnce
-        const message = { hash, height, remainBal };
+        const remainBal = furyBalnce;
+        const error_msg = error
+        const message = { hash, height, remainBal, error_msg };
        
         window.parent.postMessage(message, 'http://stg.fanfury.xyz'); 
     };
@@ -183,7 +185,10 @@ const App = () => {
 
         } catch (error) {
            console.log('error', error) 
-           alert('Something went wrong please try again')
+           setError(error)
+        } finally {
+            alert('Something went wrong please try again')
+            setIsLoading(false);
         }
         
     };
