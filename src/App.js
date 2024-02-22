@@ -195,7 +195,7 @@ const App = () => {
          <button onClick={()=> onSubmitData()} className={`${amount > 0 ? 'trnsbtn':'disabled'}`}>Transfer</button>
          {
 
-        //    isLoading &&  
+           isLoading &&  
            <div className='spinner-wrp'>
             <span className='txt'>Please wait patiently for the Leap Wallet Extension. It may take up to 10 seconds</span>
            <Circles
