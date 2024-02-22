@@ -185,9 +185,9 @@ const App = () => {
 
         } catch (error) {
            console.log('error==========', error) 
+           alert('Something went wrong please try again')
            setError(error)
         } finally {
-            alert('Something went wrong please try again')
             setIsLoading(false);
         }
         
